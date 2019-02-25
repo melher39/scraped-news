@@ -12,7 +12,7 @@ const app = express();
 
 // setup middleware
 // as used in week 18 activity 20
-// Use morgan logger for logging requests
+// Use morgan logger for logging http requests
 app.use(logger("dev"));
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
@@ -28,6 +28,10 @@ app.engine(
     })
 );
 app.set("view engine", "handlebars");
+
+// get our routes
+require("./controllers/htmlRoutes")(app);
+require("./controllers/newsRoutes")(app);
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
