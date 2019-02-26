@@ -30,13 +30,13 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // get our routes
-require("./controllers/htmlRoutes")(app);
+// require("./controllers/htmlRoutes")(app);
 require("./controllers/newsRoutes")(app);
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 // Connect to the Mongo DB
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Start the server
 app.listen(PORT, function () {
