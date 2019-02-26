@@ -23,8 +23,10 @@ module.exports = function (app) {
                 // add the headline, description, url and photo and save them as properties of the result object
                 result.title = $(element).children("h4").text();
                 result.description = $(element).children("div.post-description").text();
-                result.link = $(element).find("div.social-container").find("div").attr("data-url");
+                result.link = $(element).children("div.social-container").children("div").attr("data-url");
                 result.image = $(element).children("div.post-thumb-container").children("a").children("img").attr("src");
+                // the img tag does not include the domain name, so we add it manually using a template literal
+                result.image =  `http://www.thrashermagazine.com${result.image}`;
 
                 // now create a new Article using the result object above
                 db.Article.create(result).then((dbArticle) => {
