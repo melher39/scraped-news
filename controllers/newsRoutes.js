@@ -2,7 +2,7 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-// Require all models
+// Require our models/collections
 const db = require("../models");
 
 // export our routes to be used by the server
@@ -54,4 +54,4 @@ module.exports = function (app) {
         })
     });
 
-}
+};
