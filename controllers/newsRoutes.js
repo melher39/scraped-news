@@ -24,7 +24,7 @@ module.exports = function (app) {
                 result.title = $(element).children("h4").text();
                 result.description = $(element).children("div.post-description").text();
                 result.link = $(element).find("div.social-container").find("div").attr("data-url");
-                result.img = $(element).children("div.post-thumb-container").children("a").children("img").attr("src");
+                result.image = $(element).children("div.post-thumb-container").children("a").children("img").attr("src");
 
                 // now create a new Article using the result object above
                 db.Article.create(result).then((dbArticle) => {
@@ -41,7 +41,7 @@ module.exports = function (app) {
     });
 
     // route for getting all articles from the db
-    app.get("all", (req, res) => {
+    app.get("/all", (req, res) => {
         // grab all the articles in the Article collection
         db.Article.find({}).then((dbArticle) => {
             // if articles were successfully found, send these to the client
