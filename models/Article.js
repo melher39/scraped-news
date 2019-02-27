@@ -27,13 +27,13 @@ const ArticleSchema = new Schema({
         type: String,
         required: true
     },
-    // "comment" is an object that stores a Comment id
-    // The ref property links the ObjectId to the Comment model
-    // This allows us to populate the Article with an associated Comment
-    comment: {
+    // "comment" is an array that stores a CommentIDs
+    // The ref property links these ObjectIds to the Comment model
+    // This allows us to populate the Article with all associated Comments
+    comment: [{
         type: Schema.Types.ObjectId,
         ref: "Comment"
-    }
+    }]
 
 });
 

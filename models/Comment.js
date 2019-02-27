@@ -7,8 +7,6 @@ const Schema = mongoose.Schema;
 
 // using the Schema constructor, we will create a new UserSchema object
 const CommentSchema = new Schema({
-    // title is a string type
-    title: String,
     // body is a string stype
     body: String
 });
