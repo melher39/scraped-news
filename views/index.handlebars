@@ -23,20 +23,24 @@
         <h4>{{this.title}}</h4>
         <p>{{this.description}}</p>
         <p>Check it out <a href="{{this.link}}">here</a></p>
+
+        {{#each this.comment as |comment index| }}
         <!-- Modal Trigger -->
         <a class="waves-effect waves-light btn modal-trigger" href="#comment-modal">Comments</a>
 
         <!-- Modal Structure -->
         <div id="comment-modal" class="modal">
             <div class="modal-content">
-                <h4>Modal Header</h4>
-                <p>A bunch of text</p>
+                <p>{{comment}}</p>
             </div>
             <div class="modal-footer">
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
             </div>
         </div>
+        {{!-- this should terminate the comments iteration --}}
+        {{/each}}
 
     </div>
 </div>
+{{!-- this terminates the scraped articles feed --}}
 {{/each}}
