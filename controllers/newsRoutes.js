@@ -77,7 +77,7 @@ module.exports = function (app) {
         });
     });
 
-    // route for retrieving a specific Article by ID and populate it with its comment
+    // route for retrieving a specific Article by ID and populate it with its comments
     app.get("/articles/:id", (req, res) =>{
         // using req.params.id, find the matching Article in our DB
         db.Article.findById(
@@ -89,6 +89,19 @@ module.exports = function (app) {
             res.json(dbArticle);
         }).catch((err)=>{
             // or if an error occurs, send it to the client side as well
+            res.json(err);
+        });
+    });
+
+    // route for deleting an Article's associated comment by ID
+    app.delete("/comments/:id", (req, res) => {
+        db.Comment.findByIdAndDelete(
+            {_id: req.params.id}
+        ).then((dbComment)=>{
+            // console.log(res);
+            console.log(dbComment);
+            res.send("delete successful!")
+        }).catch((err)=>{
             res.json(err);
         });
     });
