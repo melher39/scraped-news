@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col s12 center">
             <h1>Skate Feed</h1>
-            <h4>Stay up to date with everything skateboarding related!</h4>
+            <h5>Stay up to date with everything skateboarding related!</h5>
         </div>
     </div>
 
@@ -13,17 +13,30 @@
     </div>
 </div>
 
-    {{#each results}}
+{{#each results}}
 <div class="row" id="scraped-articles">
 
     <div class="col s2">
         <img src="{{this.image}}" alt="{{this.title}}">
     </div>
     <div class="col s10" id="headline">
-        <h3>{{this.title}}</h3>
+        <h4>{{this.title}}</h4>
         <p>{{this.description}}</p>
         <p>Check it out <a href="{{this.link}}">here</a></p>
+        <!-- Modal Trigger -->
+        <a class="waves-effect waves-light btn modal-trigger" href="#comment-modal">Comments</a>
+
+        <!-- Modal Structure -->
+        <div id="comment-modal" class="modal">
+            <div class="modal-content">
+                <h4>Modal Header</h4>
+                <p>A bunch of text</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+        </div>
 
     </div>
 </div>
-    {{/each}}
+{{/each}}
