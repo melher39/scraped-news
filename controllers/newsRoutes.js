@@ -46,8 +46,14 @@ module.exports = function (app) {
     app.get("/all", (req, res) => {
         // grab all the articles in the Article collection
         db.Article.find({}).then((dbArticle) => {
+
+            // since the result is an array of objects, but we need an object to pass through to handlebars, we will create one with the results
+            let resultObject = { results: dbArticle };
+            console.log(resultObject);
+            res.render("index", resultObject);
             // if articles were successfully found, send these to the client
-            res.json(dbArticle);
+            //  res.json(resultObject);
+
         }).catch((err) => {
             // if an error occurs, then also let the client know
             res.json(err);
@@ -64,7 +70,7 @@ module.exports = function (app) {
             // took $push from week 18 activity 19, it allows multiple items to be pushed into the comment array in the Article collection without overwriting the previous one
             return db.Article.findOneAndUpdate(
                 { _id: req.params.id },
-                {$push: { comment: dbComment._id }},
+                { $push: { comment: dbComment._id } },
                 { new: true }
             );
             // db.Article.comment.push()
@@ -78,30 +84,30 @@ module.exports = function (app) {
     });
 
     // route for retrieving a specific Article by ID and populate it with its comments
-    app.get("/articles/:id", (req, res) =>{
+    app.get("/articles/:id", (req, res) => {
         // using req.params.id, find the matching Article in our DB
         db.Article.findById(
-            {_id: req.params.id}
+            { _id: req.params.id }
         )
-        // and populate all the comments linked to it
-        .populate("comment").then((dbArticle)=>{
-            // if the query to find an Article with the given ID is successful, then send this back to the client side
-            res.json(dbArticle);
-        }).catch((err)=>{
-            // or if an error occurs, send it to the client side as well
-            res.json(err);
-        });
+            // and populate all the comments linked to it
+            .populate("comment").then((dbArticle) => {
+                // if the query to find an Article with the given ID is successful, then send this back to the client side
+                res.json(dbArticle);
+            }).catch((err) => {
+                // or if an error occurs, send it to the client side as well
+                res.json(err);
+            });
     });
 
     // route for deleting an Article's associated comment by ID
     app.delete("/comments/:id", (req, res) => {
         db.Comment.findByIdAndDelete(
-            {_id: req.params.id}
-        ).then((dbComment)=>{
+            { _id: req.params.id }
+        ).then((dbComment) => {
             // console.log(res);
             console.log(dbComment);
             res.send("delete successful!")
-        }).catch((err)=>{
+        }).catch((err) => {
             res.json(err);
         });
     });

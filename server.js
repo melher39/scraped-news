@@ -30,7 +30,7 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // get our routes
-// require("./controllers/htmlRoutes")(app);
+require("./controllers/htmlRoutes")(app);
 require("./controllers/newsRoutes")(app);
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
