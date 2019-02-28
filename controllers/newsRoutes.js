@@ -31,7 +31,7 @@ module.exports = function (app) {
                 // now create a new Article using the result object above
                 db.Article.create(result).then((dbArticle) => {
                     // log the added result
-                    console.log(dbArticle);
+                    // console.log(dbArticle);
                 }).catch((err) => {
                     // if an error occurs, log it
                     console.log(err);
@@ -52,7 +52,7 @@ module.exports = function (app) {
             console.log(resultObject);
             res.render("index", resultObject);
             // if articles were successfully found, send these to the client
-            //  res.json(resultObject);
+            //  res.json(resultObject.results);
 
         }).catch((err) => {
             // if an error occurs, then also let the client know
