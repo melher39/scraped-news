@@ -13,13 +13,17 @@
     </div>
 </div>
 
-<div class="row" id="scraped-articles">
     {{#each results}}
+<div class="row" id="scraped-articles">
 
-    <div class="col s12" id="headline">
-        {{this.title}}
+    <div class="col s2">
+        <img src="{{this.image}}" alt="{{this.title}}">
+    </div>
+    <div class="col s10" id="headline">
+        <h3>{{this.title}}</h3>
+        <p>{{this.description}}</p>
+        <p>Check it out <a href="{{this.link}}">here</a></p>
 
     </div>
-    {{/each}}
-    yoooooooo
 </div>
+    {{/each}}
