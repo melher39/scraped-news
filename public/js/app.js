@@ -18,6 +18,23 @@ $(document).ready(function() {
     });
     });
 
+    $("#comments-button").on("click", function(){
+        alert("it works");
+        let articleId = $(this).data("id");
+        $.get("/articles/"+ articleId, function(result){
+            console.log("this is the article with the comments: " + result);
+
+            for (let i=0; i <result.comment.length; i++){
+                let comment = result.comment[i].body;
+                console.log(comment);
+                $("#comment-body").append(comment);
+
+            }
+           
+        });
+
+    });
+
     $(".modal").modal();
 
 
