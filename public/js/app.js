@@ -18,7 +18,7 @@ $(document).ready(function() {
     });
     });
 
-    $("#comments-button").on("click", function(){
+    $(".comments-button").on("click", function(){
         alert("it works");
         let articleId = $(this).data("id");
         $.get("/articles/"+ articleId, function(result){
@@ -30,6 +30,8 @@ $(document).ready(function() {
                 $("#comment-body").append(comment);
 
             }
+            // jquery for modal pop-up    
+            $("#comment-modal").modal("open");
            
         });
 
