@@ -1,6 +1,9 @@
 // this will be our js file for front-end app logic
 // wait for the document to load and be ready
 $(document).ready(function () {
+
+    $(".tooltipped").tooltip();
+
     // this button should load the scraped articles
     $("#scrape-button").on("click", function () {
         // send the GET request to display all the info on the page
@@ -31,12 +34,12 @@ $(document).ready(function () {
                 // dynamically create a delete button for every comment
                 // also give it classes and a specific article ID to use later
                 let deleteButton = $("<button>");
-                deleteButton.addClass("btn right delete-button modal-close");
+                deleteButton.addClass("btn right delete-button modal-close tooltipped");
                 deleteButton.text("X");
                 deleteButton.attr("data-id", result.comment[i]._id);
-
+                
                 // append both the comment and delete button in the comments section of the modal
-                $("#comment-body").append("<div>", articleComment, deleteButton, "</div>");
+                $("#comment-body").append("<p>", articleComment, deleteButton, "</p><br>");
             }
         });
         // once the get request has retrieved the results, then open the modal with the results
@@ -75,4 +78,6 @@ $(document).ready(function () {
 
     // materialize modal initialization
     $(".modal").modal();
+    // materialize tooltip initialization
+
 });
