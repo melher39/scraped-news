@@ -5,72 +5,71 @@ $(document).ready(function () {
     $("#scrape-button").on("click", function (event) {
         // event.preventDefault();
         // send the GET request to display all the info on the page
-            $.ajax("/all", {
-                type: "GET"
-            }).then(function () {
+            $.get("/all", function () {
                 location.href = "/all";
             });
         });
 
+        // this button will load all the comments for that specific article
     $(".comments-button").on("click", function () {
-        // alert("it works");
         // empty the div before adding new comments so comments are not piled up infinitely
         $("#comment-body").empty();
 
-
+        // grab the id attribute of the button to use it for our route
         let articleId = $(this).data("id");
+        // get route to retrieve the article and its comments
         $.get("/articles/" + articleId, function (result) {
-            console.log("this is the article with the comments: " + result);
 
+            // loop through all the comments for this one article
             for (let i = 0; i < result.comment.length; i++) {
+                // store the comments in a variable for easier access
                 let articleComment = result.comment[i].body;
-                console.log(articleComment);
 
-
+                // dynamically create a delete button for every comment
+                // also give it classes and a specific article ID to use later
                 let deleteButton = $("<button>");
                 deleteButton.addClass("btn right delete-button modal-close");
                 deleteButton.text("X");
                 deleteButton.attr("data-id", result.comment[i]._id);
+
+                // append both the comment and delete button in the comments section of the modal
                 $("#comment-body").append("<div>", articleComment, deleteButton, "</div>");
-
-
             }
         });
-
+        // once the get request has retrieved the results, then open the modal with the results
         $("#comment-modal").modal("open");
-
-
     });
 
+    // this button enables the user to add a comment to any specific article
     $(".add-comment-button").on("click", function(event){
+        // prevent the page from reloading
         event.preventDefault();
+        // tell the user they have successfully added the comment
         alert("Successfully added comment!");
+        // save the article's ID for later use
         let articleId = $(this).data("id");
+        // the comment being added is an object because the post route requires req.body
         let newComment = {
             body: $("#add-comment-input").val().trim()
         };
-        console.log(newComment);
+        // post route that finds the article by ID and adds the new comment
         $.post("/articles/" + articleId, newComment, function(){
+            // the input field will be emptied after it's all said and done
             $("#add-comment-input").val("");
         });
     });
 
+    // route to delete a specific button
+    // since the buttons are being created dynamically, I use this format to select each button
     $(document).on("click", ".delete-button", function () {
-        // alert("delete button works");
+        // save the comment ID 
         let commentId = $(this).data("id");
+        // make an ajax delete request to the specific ID
         $.ajax("/comments/" + commentId, {
             type: "DELETE"
-        }).then(
-            function () {
-                // $("#comment.modal").modal("close");
-            });
+        });
     });
 
-    // $(".modal-close").on("click", function(){
-
-    // })
-
+    // materialize modal initialization
     $(".modal").modal();
-
-
 });

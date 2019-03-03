@@ -12,6 +12,7 @@ module.exports = function (app) {
     app.get("/", (req, res) => {
         // grab the html body with axios
         axios.get("http://www.thrashermagazine.com/").then((response) => {
+
             // we load the response into cheerio and save it to $ for a shorthand selector
             const $ = cheerio.load(response.data);
 
@@ -31,7 +32,7 @@ module.exports = function (app) {
                 // now create a new Article using the result object above
                 db.Article.create(result).then((dbArticle) => {
                     // log the added result
-                    // console.log(dbArticle);
+                    console.log(dbArticle);
                 }).catch((err) => {
                     // if an error occurs, log it
                     console.log(err);
@@ -44,6 +45,7 @@ module.exports = function (app) {
 
     // route for getting all articles from the db
     app.get("/all", (req, res) => {
+
         // grab all the articles in the Article collection
         db.Article.find({}).then((dbArticle) => {
 
@@ -51,13 +53,11 @@ module.exports = function (app) {
             let resultObject = { results: dbArticle };
             console.log(resultObject);
             res.render("index", resultObject);
-            // if articles were successfully found, send these to the client
-            //  res.json(resultObject.results);
 
         }).catch((err) => {
             // if an error occurs, then also let the client know
             res.json(err);
-        })
+        });
     });
 
     // route for creating/updating an Article's associated Comment
@@ -72,8 +72,7 @@ module.exports = function (app) {
                 { _id: req.params.id },
                 { $push: { comment: dbComment._id } },
                 { new: true }
-            );
-            // db.Article.comment.push()
+            )
         }).then((dbArticle) => {
             // if the update on the article was successful, then show it to the client side
             res.json(dbArticle);
@@ -104,9 +103,9 @@ module.exports = function (app) {
         db.Comment.findByIdAndDelete(
             { _id: req.params.id }
         ).then((dbComment) => {
-            // console.log(res);
+            // for our testing purposes
             console.log(dbComment);
-            res.send("delete successful!")
+            // if an error occurs...
         }).catch((err) => {
             res.json(err);
         });
