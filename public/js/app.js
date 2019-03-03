@@ -35,7 +35,6 @@ $(document).ready(function () {
 
                 let deleteButton = $("<button>");
                 deleteButton.addClass("btn right delete-button modal-close");
-                // deleteButton.addClass("right");
                 deleteButton.text("X");
                 deleteButton.attr("data-id", result.comment[i]._id);
                 $("#comment-body").append("<div>", articleComment, deleteButton, "</div>");
@@ -49,14 +48,27 @@ $(document).ready(function () {
 
     });
 
+    $(".add-comment-button").on("click", function(event){
+        event.preventDefault();
+        alert("Successfully added comment!");
+        let articleId = $(this).data("id");
+        let newComment = {
+            body: $("#add-comment-input").val().trim()
+        };
+        console.log(newComment);
+        $.post("/articles/" + articleId, newComment, function(){
+            $("#add-comment-input").val("");
+        });
+    });
+
     $(document).on("click", ".delete-button", function () {
-        alert("delete button works");
+        // alert("delete button works");
         let commentId = $(this).data("id");
         $.ajax("/comments/" + commentId, {
             type: "DELETE"
         }).then(
             function () {
-                $("#comment.modal").modal("close");
+                // $("#comment.modal").modal("close");
             });
     });
 

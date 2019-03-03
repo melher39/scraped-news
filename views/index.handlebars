@@ -25,24 +25,38 @@
         <p>Check it out <a href="{{this.link}}">here</a></p>
 
         <!-- Modal Trigger -->
-        <button class="btn comments-button" data-id="{{this._id}}" >Comments</button>
+        <button class="btn comments-button" data-id="{{this._id}}">Comments</button>
 
         <!-- Modal Structure -->
         <div id="comment-modal" class="modal">
 
             <div class="modal-content">
                 <h5>Comments</h5>
-                {{!-- <div id="comment-content"> --}}
-                    {{!-- <div id="comment-content"> --}}
-                        <div id="comment-body" class="center"></div>
-                        
-                    {{!-- </div> --}}
-                    
+                {{!-- <div class="row"> --}}
+                <div id="comment-body" class="center"></div>
                 {{!-- </div> --}}
+
+                <br>
+                <form>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="add-comment-input" type="text" class="validate">
+                            <label for="add-comment-input">Add A Comment</label>
+                        </div>
+                    </div>
+                    <button class="btn add-comment-button modal-close" data-id="{{this._id}}"><i class="material-icons">add</i>
+                    </button>
+                </form>
+
+
+
+
+
             </div>
 
             <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
             </div>
         </div>
 
