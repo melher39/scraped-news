@@ -8,9 +8,11 @@ const Schema = mongoose.Schema;
 // using the Schema constructor, we will create a new UserSchema object
 const ArticleSchema = new Schema({
     // title is a type string and is required
+    // also adding unique true so duplicates will not be saved in the db
     title: {
         type: String,
-        required: true
+        required: true, 
+        unique: true
     },
     // description is a type string and also required
     description: {

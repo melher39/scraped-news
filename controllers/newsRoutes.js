@@ -28,11 +28,11 @@ module.exports = function (app) {
                 result.image = $(element).children("div.post-thumb-container").children("a").children("img").attr("src");
                 // the img tag does not include the domain name, so we add it manually using a template literal
                 result.image = `http://www.thrashermagazine.com${result.image}`;
-
+                
                 // now create a new Article using the result object above
                 db.Article.create(result).then((dbArticle) => {
                     // log the added result
-                    console.log(dbArticle);
+                    // console.log(dbArticle);
                 }).catch((err) => {
                     // if an error occurs, log it
                     console.log(err);
@@ -51,7 +51,7 @@ module.exports = function (app) {
 
             // since the result is an array of objects, but we need an object to pass through to handlebars, we will create one with the results
             let resultObject = { results: dbArticle };
-            console.log(resultObject);
+            // console.log(resultObject);
             res.render("index", resultObject);
 
         }).catch((err) => {

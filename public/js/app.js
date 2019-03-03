@@ -2,15 +2,18 @@
 // wait for the document to load and be ready
 $(document).ready(function () {
     // this button should load the scraped articles
-    $("#scrape-button").on("click", function (event) {
-        // event.preventDefault();
+    $("#scrape-button").on("click", function () {
         // send the GET request to display all the info on the page
+        // but first check for updates
+        $.get("/", function () {
             $.get("/all", function () {
                 location.href = "/all";
             });
         });
 
-        // this button will load all the comments for that specific article
+    });
+
+    // this button will load all the comments for that specific article
     $(".comments-button").on("click", function () {
         // empty the div before adding new comments so comments are not piled up infinitely
         $("#comment-body").empty();
@@ -41,7 +44,7 @@ $(document).ready(function () {
     });
 
     // this button enables the user to add a comment to any specific article
-    $(".add-comment-button").on("click", function(event){
+    $(".add-comment-button").on("click", function (event) {
         // prevent the page from reloading
         event.preventDefault();
         // tell the user they have successfully added the comment
@@ -53,7 +56,7 @@ $(document).ready(function () {
             body: $("#add-comment-input").val().trim()
         };
         // post route that finds the article by ID and adds the new comment
-        $.post("/articles/" + articleId, newComment, function(){
+        $.post("/articles/" + articleId, newComment, function () {
             // the input field will be emptied after it's all said and done
             $("#add-comment-input").val("");
         });
