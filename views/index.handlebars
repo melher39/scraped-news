@@ -25,16 +25,20 @@
         <p>Check it out <a href="{{this.link}}">here</a></p>
 
         <!-- Modal Trigger -->
-        {{!-- <a id="comments-button" class="waves-effect waves-light btn" href="#comment-modal" data-id="{{this._id}}">Comments</a> --}}
-
-        <!-- Modal Trigger -->
-  <button class="btn comments-button" data-id="{{this._id}}">Comments</button>
+        <button class="btn comments-button" data-id="{{this._id}}" >Comments</button>
 
         <!-- Modal Structure -->
         <div id="comment-modal" class="modal">
 
             <div class="modal-content">
-                <p id="comment-body"></p>
+                <h5>Comments</h5>
+                {{!-- <div id="comment-content"> --}}
+                    {{!-- <div id="comment-content"> --}}
+                        <div id="comment-body" class="center"></div>
+                        
+                    {{!-- </div> --}}
+                    
+                {{!-- </div> --}}
             </div>
 
             <div class="modal-footer">
