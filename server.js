@@ -4,7 +4,7 @@ const exphbs = require("express-handlebars");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 
-// local
+// PORT for either deployed or local use
 const PORT = process.env.PORT || 3000;
 
 // Initialize Express
@@ -13,6 +13,7 @@ const app = express();
 // setup middleware
 // as used in week 18 activity 20
 // Use morgan logger for logging http requests
+// this logger is actually very useful
 app.use(logger("dev"));
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
@@ -30,11 +31,12 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // get our routes
-require("./controllers/htmlRoutes")(app);
 require("./controllers/newsRoutes")(app);
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+// took this from the assignment instructions
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
 // Connect to the Mongo DB
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 

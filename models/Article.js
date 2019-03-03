@@ -27,7 +27,7 @@ const ArticleSchema = new Schema({
         type: String,
         required: true
     },
-    // "comment" is an array that stores a CommentIDs
+    // "comment" is an array that stores CommentIDs
     // The ref property links these ObjectIds to the Comment model
     // This allows us to populate the Article with all associated Comments
     comment: [{

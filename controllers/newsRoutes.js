@@ -9,7 +9,7 @@ const db = require("../models");
 module.exports = function (app) {
     // our GET route for scraping the thrasher website
     // based off week 18 activity 20
-    app.get("/scrape", (req, res) => {
+    app.get("/", (req, res) => {
         // grab the html body with axios
         axios.get("http://www.thrashermagazine.com/").then((response) => {
             // we load the response into cheerio and save it to $ for a shorthand selector
@@ -37,8 +37,8 @@ module.exports = function (app) {
                     console.log(err);
                 });
             });
-
-            res.send("Scraping complete, let's proceed!");
+            // as soon as the home page is loaded, the scraped articles will already be ready to display, but for now, just show the index html file
+            res.render("index");
         });
     });
 

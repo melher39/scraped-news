@@ -3,20 +3,14 @@
 $(document).ready(function () {
     // this button should load the scraped articles
     $("#scrape-button").on("click", function (event) {
-        // 
         // event.preventDefault();
-        // send the GET request to scrape the thrasher site
-        $.ajax("/scrape", {
-            type: "GET"
-            // then send another GET request to gather all the articles retrieved
-        }).then(function () {
+        // send the GET request to display all the info on the page
             $.ajax("/all", {
                 type: "GET"
             }).then(function () {
                 location.href = "/all";
             });
         });
-    });
 
     $(".comments-button").on("click", function () {
         // alert("it works");
