@@ -37,7 +37,7 @@ $(document).ready(function () {
                 deleteButton.addClass("btn right delete-button modal-close tooltipped");
                 deleteButton.text("X");
                 deleteButton.attr("data-id", result.comment[i]._id);
-                
+
                 // append both the comment and delete button in the comments section of the modal
                 $("#comment-body").append("<p>", articleComment, deleteButton, "</p><br>");
             }
@@ -68,6 +68,10 @@ $(document).ready(function () {
     // route to delete a specific button
     // since the buttons are being created dynamically, I use this format to select each button
     $(document).on("click", ".delete-button", function () {
+        
+        // alert the user they have deleted the comment first
+        alert("Comment successfully deleted!");
+
         // save the comment ID 
         let commentId = $(this).data("id");
         // make an ajax delete request to the specific ID
@@ -78,6 +82,5 @@ $(document).ready(function () {
 
     // materialize modal initialization
     $(".modal").modal();
-    // materialize tooltip initialization
 
 });
