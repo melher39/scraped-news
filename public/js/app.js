@@ -50,7 +50,7 @@ $(document).ready(function () {
     });
 
     // this button enables the user to add a comment to any specific article
-    $(document).on("click","#add-comment-button", function () {
+    $(document).on("click", "#add-comment-button", function () {
         // prevent the page from reloading
         // event.preventDefault();
         // tell the user they have successfully added the comment
@@ -65,15 +65,16 @@ $(document).ready(function () {
         $.post("/articles/" + articleId, newComment, function () {
             // the input field will be emptied after it's all said and done
             $("#add-comment-input").val("");
+            // reload the page in order for the articleID to get refreshed
+            location.reload();
         });
-        // reload the page in order for the articleID to get refreshed
-        location.reload();
+
     });
 
     // route to delete a specific button
     // since the buttons are being created dynamically, I use this format to select each button
     $(document).on("click", ".delete-button", function () {
-        
+
         // alert the user they have deleted the comment first
         alert("Comment successfully deleted!");
 
