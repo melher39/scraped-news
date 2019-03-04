@@ -1,1 +1,35 @@
 /* additional styling may go here... */
+
+/* background image */
+body{
+    background-image: url("/images/skate-heart.png");
+}
+
+/* main title section */
+#title {
+    background-color: white;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+/* skate feed styling */
+#title h1 {
+    font-family: Shrikhand;
+}
+
+/* change default container width so background is seen better */
+.container {
+    max-width: 650px !important;
+}
+
+/* change the default row values so articles can be easily read when loaded */
+#scraped-articles {
+    background-color: white;
+    margin-bottom: 0;
+    padding-bottom: 20px;
+}
+
+/* quick font style change for the article title */
+.article-title{
+    font-style: italic;
+}

@@ -1,10 +1,8 @@
 {{!-- title and scraping button will go here --}}
-<div class="container">
-    <div class="row">
-        <div class="col s12 center">
-            <h1>Skate Feed</h1>
-            <h5>Stay up to date with everything skateboarding related!</h5>
-        </div>
+<div id="poster">
+    <div id="title" class="center container">
+        <h1 class="white-bg">Skate Feed</h1>
+        <h5><strong>Stay up to date with everything skateboarding related!</strong></h5>
     </div>
 
     <div class="row center">
@@ -12,6 +10,7 @@
             feed</a>
     </div>
 </div>
+
 
 {{!-- iterate over the scraped articles --}}
 {{#each results}}
@@ -23,7 +22,7 @@
 
     <div class="col s10" id="headline">
         {{!-- display the article's basic information --}}
-        <h4>{{this.title}}</h4>
+        <h4 class="article-title">{{this.title}}</h4>
         <p>{{this.description}}</p>
         <p>Check it out <a href="{{this.link}}">here</a></p>
 
