@@ -17,12 +17,15 @@ $(document).ready(function () {
     });
 
     // this button will load all the comments for that specific article
-    $(".comments-button").on("click", function () {
+    $(document).on("click", "#comments-button", function () {
         // empty the div before adding new comments so comments are not piled up infinitely
         $("#comment-body").empty();
 
         // grab the id attribute of the button to use it for our route
         let articleId = $(this).data("id");
+        // give the add-comment-button this article ID so it can be used to add comments with the route
+        $("#add-comment-button").attr("data-id", articleId);
+
         // get route to retrieve the article and its comments
         $.get("/articles/" + articleId, function (result) {
 
@@ -47,9 +50,9 @@ $(document).ready(function () {
     });
 
     // this button enables the user to add a comment to any specific article
-    $(".add-comment-button").on("click", function (event) {
+    $(document).on("click","#add-comment-button", function () {
         // prevent the page from reloading
-        event.preventDefault();
+        // event.preventDefault();
         // tell the user they have successfully added the comment
         alert("Successfully added comment!");
         // save the article's ID for later use
@@ -63,6 +66,8 @@ $(document).ready(function () {
             // the input field will be emptied after it's all said and done
             $("#add-comment-input").val("");
         });
+        // reload the page in order for the articleID to get refreshed
+        location.reload();
     });
 
     // route to delete a specific button

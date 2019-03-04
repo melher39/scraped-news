@@ -27,7 +27,7 @@
         <p>Check it out <a href="{{this.link}}">here</a></p>
 
         <!-- Modal Trigger -->
-        <button class="btn comments-button" data-id="{{this._id}}">Comments</button>
+        <button class="btn" data-id="{{this._id}}" id="comments-button">Comments</button>
 
         <!-- Modal Structure -->
         <div id="comment-modal" class="modal">
@@ -44,7 +44,7 @@
                             <label for="add-comment-input">Add A Comment</label>
                         </div>
                     </div>
-                    <button class="btn add-comment-button modal-close" data-id="{{this._id}}"><i
+                    <button class="btn modal-close" id="add-comment-button"><i
                             class="material-icons">add</i>
                     </button>
                 </form>
