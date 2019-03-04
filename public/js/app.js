@@ -2,8 +2,6 @@
 // wait for the document to load and be ready
 $(document).ready(function () {
 
-    $(".tooltipped").tooltip();
-
     // this button should load the scraped articles
     $("#scrape-button").on("click", function () {
         // send the GET request to display all the info on the page
@@ -37,7 +35,7 @@ $(document).ready(function () {
                 // dynamically create a delete button for every comment
                 // also give it classes and a specific article ID to use later
                 let deleteButton = $("<button>");
-                deleteButton.addClass("btn right delete-button modal-close tooltipped");
+                deleteButton.addClass("btn right delete-button modal-close");
                 deleteButton.text("X");
                 deleteButton.attr("data-id", result.comment[i]._id);
 
